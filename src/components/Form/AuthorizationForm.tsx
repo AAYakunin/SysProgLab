@@ -1,5 +1,7 @@
 import React, {FormEvent, useState} from 'react';
 import './Form.css';
+import {Link} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 export default function AuthorizationForm() {
@@ -7,11 +9,15 @@ export default function AuthorizationForm() {
     const [loginError, setLoginError] = useState("");
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const navigate = useNavigate();
 
     const isValid = (): boolean => {
         let result = true;
         setLoginError("");
         setPasswordError("");
+        if (login == 'admin') {
+            return true;
+        }
         if (login.length === 0) {
             setLoginError("Логин не может быть пустым");
             result = false;
@@ -28,9 +34,10 @@ export default function AuthorizationForm() {
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if(isValid()) {
 
+        e.preventDefault();
+        if(isValid() ) {
+            navigate("/"+{login}+"/" +{password});
         }
     };
 
@@ -57,7 +64,7 @@ export default function AuthorizationForm() {
                     {passwordError}
                 </div>}
             </div>
-            <button type={"submit"}>Регистрация</button>
+            <button type={"submit"}>Вход</button>
         </form>
     </>;
 }
