@@ -5,14 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import RegistrationForm from "./components/Form/RegistrationForm";
 import AuthorizationForm from './components/Form/AuthorizationForm';
+import IdPost from './components/Form/IdPost';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+      Регистрация
     <RegistrationForm />
+    <br/>
+      Авторизация
     <AuthorizationForm />
+    <br/>
+      Контрольная ID
+    <IdPost />
   </React.StrictMode>
 );
 
